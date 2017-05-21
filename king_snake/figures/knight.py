@@ -27,7 +27,7 @@ class Knight(Figure):
                  "below": ("below_left", "below_right"),
                  "to_left": ("above_left", "below_left"),
                  "to_right": ("above_right", "below_right")}
-        for first_step in steps.keys():
+        for first_step in list(steps.keys()):
             for second_step in steps[first_step]:
                 first_pos = getattr(self.position, first_step)()
                 if first_pos:

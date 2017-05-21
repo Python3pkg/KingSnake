@@ -33,7 +33,7 @@ class ChessGame(object):
         valid_move = False
         while not valid_move:
             self.show(message)
-            move = raw_input("Please enter your move (e.g. E2 E4) or enter to "
+            move = input("Please enter your move (e.g. E2 E4) or enter to "
                              "access the menu: ")
             if not move:
                 self.menu()
@@ -65,9 +65,9 @@ class ChessGame(object):
 
         def resign():
             """Resign."""
-            print("{} resigns. {} is the winner!".format(
+            print(("{} resigns. {} is the winner!".format(
                  self.chessboard.current_player.color.capitalize(),
-                 self.chessboard.current_player.opponent.color.capitalize()))
+                 self.chessboard.current_player.opponent.color.capitalize())))
             time.sleep(10)
             quit_game()
 
@@ -77,7 +77,7 @@ class ChessGame(object):
 
         def save_game():
             """Save game to file."""
-            file_name = raw_input("What file would you like to save to?: ")
+            file_name = input("What file would you like to save to?: ")
             try:
                 with open(file_name, "w") as saved_game:
                     pickle.dump(self.chessboard, saved_game)
@@ -88,7 +88,7 @@ class ChessGame(object):
 
         def load_game():
             """Load game from file."""
-            file_name = raw_input("What file would you like to load from?: ")
+            file_name = input("What file would you like to load from?: ")
             try:
                 with open(file_name) as saved_game:
                     self.chessboard = pickle.load(saved_game)
@@ -114,9 +114,9 @@ class ChessGame(object):
         valid_choice = False
         while not valid_choice:
             for number, choice in enumerate(menu_choices):
-                print("{}. {}".format(number + 1, choice[1]))
+                print(("{}. {}".format(number + 1, choice[1])))
             try:
-                decision = int(raw_input("What would you like to do?: ")) - 1
+                decision = int(input("What would you like to do?: ")) - 1
                 try:
                     valid_choice = True
                     menu_choices[decision][0]()
@@ -128,9 +128,9 @@ class ChessGame(object):
 
     def show(self, message=""):
         """Show chessboard and print current player."""
-        print(self.chessboard)
-        print("{}\n"
+        print((self.chessboard))
+        print(("{}\n"
               "It's {}'s turn.".format(message,
-                                       self.chessboard.current_player.color))
+                                       self.chessboard.current_player.color)))
 
 game = ChessGame()

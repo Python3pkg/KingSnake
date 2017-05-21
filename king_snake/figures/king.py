@@ -30,7 +30,7 @@ class King(Figure):
         moves = []
         # Castling positions
         if not self.already_moved:
-            moves.extend(self.castle_positions.values())
+            moves.extend(list(self.castle_positions.values()))
         # Normal positions
         moves.extend(self._fields_in_directions(("to_left", "to_right",
                                                  "above", "below",
@@ -47,7 +47,7 @@ class King(Figure):
         castling. Otherwise call superclass method.
         """
         if (field in self.legal_moves and
-                field in self.castle_positions.values()):
+                field in list(self.castle_positions.values())):
             raise FieldMustBeCastledError("Goal field is for castling.")
         else:
             super(King, self).move(field)
